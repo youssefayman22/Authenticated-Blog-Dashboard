@@ -1,0 +1,90 @@
+.newPostContainer {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+    padding: 2rem;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    background-color: #f9f9f9;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    max-width: 500px;
+    margin: 0 auto;
+  }
+  
+  .newPostContainer h1 {
+    font-size: 1.8rem;
+    color: #333;
+    text-align: center;
+    margin-bottom: 1rem;
+  }
+  
+  .newPostContainer label {
+    font-weight: bold;
+    margin-bottom: 0.5rem;
+    display: block;
+    color: #555;
+  }
+  
+  .newPostContainer input,
+  .newPostContainer textarea {
+    width: 100%;
+    padding: 0.8rem;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    font-size: 1rem;
+    background-color: #fff;
+    transition: border-color 0.3s;
+    margin-bottom: 0.5rem;
+  }
+  
+  .newPostContainer input:focus,
+  .newPostContainer textarea:focus {
+    border-color: #007bff;
+    outline: none;
+  }
+  
+  .newPostContainer textarea {
+    resize: vertical;
+    min-height: 100px;
+  }
+  
+  .actions {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 1.5rem;
+  }
+  
+  .actions button {
+    padding: 0.8rem 1.5rem;
+    font-size: 1rem;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background-color 0.3s, transform 0.2s;
+  }
+  
+  .actions button[type="submit"] {
+    background-color: #007bff;
+    color: white;
+  }
+  
+  .actions button[type="submit"]:hover {
+    background-color: #0056b3;
+    transform: scale(1.05);
+  }
+  
+  .actions button[type="button"] {
+    background-color: #f44336;
+    color: white;
+  }
+  
+  .actions button[type="button"]:hover {
+    background-color: #d32f2f;
+    transform: scale(1.05);
+  }
+  
+  .error {
+    color: #d32f2f;
+    font-size: 0.9rem;
+    text-align: center;
+  }
