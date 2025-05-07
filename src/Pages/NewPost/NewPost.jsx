@@ -1,11 +1,13 @@
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { postsActions } from "../../store/PostsSlice";
 import { Form } from "react-router-dom";
 import { useState } from "react";
 import styles from "./newPosts.module.css";
+import { authActions } from "../../store/AuthSlice";
 
 const NewPost = ({ onClose }) => {
   const dispatch = useDispatch();
+  const email = useSelector((state) => state.auth.email);
   const [error, setError] = useState(null);
 
   const handleSubmit = (event) => {
@@ -15,8 +17,8 @@ const NewPost = ({ onClose }) => {
     const content = formData.get("content");
 
     try {
-      dispatch(postsActions.addPost({ id: Date.now(), title, content }));
-      onClose(); // Close the dialog
+      dispatch(postsActions.addPost({ id: Date.now(), title, content, createdBy: email }));
+      onClose();
     } catch (err) {
       setError(err.message || "Something went wrong!");
     }

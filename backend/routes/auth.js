@@ -2,6 +2,7 @@ const express = require('express');
 const { add, get } = require('../data/user');
 const { createJSONToken, isValidPassword } = require('../util/auth');
 const { isValidEmail, isValidText } = require('../util/validation');
+const { getAllPostsByEmail } = require('../data/post'); // New function to fetch posts by email
 
 const router = express.Router();
 
@@ -62,7 +63,8 @@ router.post('/login', async (req, res) => {
   }
 
   const token = createJSONToken(email);
-  res.json({ token });
+  const userPosts = await getAllPostsByEmail(email); // Fetch posts created by the user
+  res.json({ token, email, posts: userPosts });
 });
 
 module.exports = router;

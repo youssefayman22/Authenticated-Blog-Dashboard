@@ -44,7 +44,13 @@ const UserForm = () => {
   };
 
   const toggleMode = () => {
-    navigate(`/?mode=${mode === "login" ? "signup" : "login"}`);
+    event.preventDefault();
+    if(mode === "login") {
+      navigate("/signup");
+    }
+    else{
+      navigate("/signup?mode=login");
+    }
   };
   return (
     <div className={styles.formOverlay}>

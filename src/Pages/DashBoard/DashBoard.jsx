@@ -6,9 +6,7 @@ import styles from "./DashBoard.module.css";
 
 const DashBoard = () => {
   const navigate = useNavigate();
-
   const isAuthenticated = useSelector((state) => state.auth.isAuthenticated);
-
 
   if (!isAuthenticated) {
     return (

@@ -18,6 +18,7 @@ async function add(data) {
 
 async function get(email) {
   const storedData = await readData();
+  console.log(storedData);
   if (!storedData.users || storedData.users.length === 0) {
     throw new NotFoundError('Could not find any users.');
   }
