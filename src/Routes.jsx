@@ -4,32 +4,48 @@ import DashBoard from "./Pages/DashBoard/DashBoard";
 import Posts from "./Pages/Posts/Posts";
 import NewPost from "./Pages/NewPost/NewPost";
 import ProtectedRoute from "./components/protectedroute/ProtectedRoute";
-import Header from "./components/Header/Header";
+import Modes from "./Pages/Modes/Modes";
+import Layout from "./Pages/Layout/Layout";
 
 const router = createBrowserRouter([
   {
     path: "/",
-    element: <Header/>,
-    children:[
+    element: <Layout />,
+    children: [
       {
-        path: "/signup",
-        element: <UserForm/>
+        index: true,
+        element: <Modes />,
       },
       {
-        path: "/dashboard",
-        element: <ProtectedRoute><DashBoard /></ProtectedRoute>,
+        path: "signup",
+        element: <UserForm />,
       },
       {
-        path: "/posts",
-        element: <Posts/>,
+        path: "dashboard",
+        element: (
+          <ProtectedRoute>
+            <DashBoard />
+          </ProtectedRoute>
+        ),
       },
       {
-        path: "/new-post",
-        element: <ProtectedRoute><NewPost /></ProtectedRoute>,
+        path: "posts",
+        element: (
+          <ProtectedRoute>
+            <Posts />
+          </ProtectedRoute>
+        ),
       },
-    ]
+      {
+        path: "new-post",
+        element: (
+          <ProtectedRoute>
+            <NewPost />
+          </ProtectedRoute>
+        ),
+      },
+    ],
   },
-  
 ]);
 
 export default router;

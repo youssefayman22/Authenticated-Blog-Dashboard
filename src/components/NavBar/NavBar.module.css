@@ -1,32 +1,46 @@
 .navBar {
-    background-color: #007bff3f;
-    padding: 1rem;
-    display: flex;
-    justify-content: center;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-  }
-  
-  .navList {
-    list-style: none;
-    display: flex;
-    gap: 2rem;
-    margin: 0;
-    padding: 0;
-  }
-  
-  .link {
-    text-decoration: none;
-    color: white;
-    font-size: 1.2rem;
-    transition: color 0.3s;
-  }
-  
-  .link:hover {
-    color: #d1e7ff;
-  }
-  
-  .active {
-    text-decoration: underline;
-    font-weight: bold;
-    color: #ffdd57;
-  }
+  background-color: #1a1a1a; /* Dark background */
+  color: white;
+  width: 15rem; /* Sidebar width */
+  height: 100vh; /* Full height */
+  position: fixed; /* Fixed to the left */
+  top: 0;
+  left: 0;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between; /* Spread links evenly */
+  align-items: center;
+  padding: 0; /* Remove padding */
+  box-shadow: 2px 0 5px rgba(0, 0, 0, 0.2);
+}
+
+.title {
+  color: aqua;
+  margin-top: 3rem; /* Remove top margin */
+}
+
+.navList {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly; /* Spread links evenly */
+  height: 100%; /* Take full height of the sidebar */
+}
+
+.link {
+  display: block;
+  width: 100%;
+  padding: 1.5rem 0; /* Increase padding for larger clickable area */
+  text-align: center;
+  text-decoration: none;
+  color: white;
+  font-size: 1.25rem; /* Larger font size */
+  transition: background-color 0.3s;
+}
+
+.link:hover {
+  background-color: #333; /* Slightly lighter background on hover */
+}

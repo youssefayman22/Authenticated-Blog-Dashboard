@@ -1,22 +1,18 @@
 import { useSelector, useDispatch } from "react-redux";
-import { useState } from "react";
-import NewPost from "../NewPost/NewPost";
 import styles from "./posts.module.css";
 import { postsActions } from "../../store/PostsSlice";
+import { useNavigate } from "react-router-dom";
 
 const Posts = () => {
   const posts = useSelector((state) => state.posts.posts);
   const isAuthenticated = useSelector((state) => state.auth.isAuthenticated);
   const email = useSelector((state) => state.auth.email);
-  const [isDialogOpen, setIsDialogOpen] = useState(false);
   const dispatch = useDispatch();
+  const navigate = useNavigate();
 
   const handleOpenDialog = () => {
-    setIsDialogOpen(true);
-  };
+    navigate("/new-post")
 
-  const handleCloseDialog = () => {
-    setIsDialogOpen(false);
   };
 
   const handleDeletePost = (id) => {
@@ -62,13 +58,13 @@ const Posts = () => {
               ))}
           </div>
         )}
-        {isDialogOpen && (
+        {/* {isDialogOpen && (
           <div className={styles.dialogOverlay}>
             <div className={styles.dialog}>
               <NewPost onClose={handleCloseDialog} />
             </div>
           </div>
-        )}
+        )} */}
       </div>
     </>
   );

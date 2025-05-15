@@ -8,7 +8,8 @@ function App() {
   return (
     <Provider store={store}>
       <main>
-        <RouterProvider router={router} />
+        <RouterProvider router={router}>
+        </RouterProvider>
       </main>
     </Provider>
   );

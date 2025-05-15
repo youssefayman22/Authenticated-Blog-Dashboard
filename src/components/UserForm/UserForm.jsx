@@ -1,7 +1,7 @@
 // filepath: src/components/UserForm/UserForm.jsx
 import { useState } from "react";
 import { Form, useNavigate, useSearchParams } from "react-router-dom";
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
 import { authActions } from "../../store/AuthSlice";
 import styles from "./UserForm.module.css";
 
@@ -32,23 +32,27 @@ const UserForm = () => {
       console.log(response.ok);
       console.log(data);
       if (mode === "signup") {
-        const expiration = new Date(new Date().getTime() + 60 * 60 * 1000);
-        dispatch(authActions.login({ token: data.token, email: data.user.email , expiration }));
+        dispatch(authActions.signup({ email: data.user.email }));
         navigate("/signup?mode=login");
       } else {
+        dispatch(
+          authActions.login({
+            email: data.email,
+            token: data.token,
+          })
+        );
         navigate("/dashboard");
       }
     } catch (err) {
-      setError(err.message || "Something went wrong!");
+      setError("Something went wrong!");
     }
   };
 
   const toggleMode = () => {
     event.preventDefault();
-    if(mode === "login") {
+    if (mode === "login") {
       navigate("/signup");
-    }
-    else{
+    } else {
       navigate("/signup?mode=login");
     }
   };

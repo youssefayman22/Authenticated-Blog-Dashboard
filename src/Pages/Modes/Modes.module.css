@@ -1,0 +1,32 @@
+.centerContainer {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 50%; /* Adjust height to make it suitable */
+  width: 50%; /* Adjust width to make it suitable */
+  margin: auto; /* Center the container horizontally and vertically */
+  border: 2px solid black; /* Add a black border */
+  border-radius: 5%; /* Add rounded corners */
+  background-color: #f9f9f9; /* Light background for better visibility */
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Add a subtle shadow */
+  padding: 2rem; /* Add padding inside the container */
+}
+
+.link {
+  display: block;
+  width: 10rem; /* Fixed width for links */
+  padding: 1rem; /* Add padding for larger clickable area */
+  text-align: center;
+  text-decoration: none;
+  color: white;
+  font-size: 1.5rem; /* Larger font size */
+  background-color: #333;
+  margin: 1rem 0; /* Add spacing between links */
+  border-radius: 5px; /* Rounded corners */
+  transition: background-color 0.3s;
+}
+
+.link:hover {
+  background-color: #555; /* Slightly lighter background on hover */
+}

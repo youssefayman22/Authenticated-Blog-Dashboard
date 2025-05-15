@@ -1,12 +1,12 @@
 import { useDispatch, useSelector } from "react-redux";
 import { postsActions } from "../../store/PostsSlice";
-import { Form } from "react-router-dom";
+import { Form, useNavigate } from "react-router-dom";
 import { useState } from "react";
 import styles from "./newPosts.module.css";
-import { authActions } from "../../store/AuthSlice";
 
-const NewPost = ({ onClose }) => {
+const NewPost = () => {
   const dispatch = useDispatch();
+  const navigate = useNavigate();
   const email = useSelector((state) => state.auth.email);
   const [error, setError] = useState(null);
 
@@ -17,13 +17,23 @@ const NewPost = ({ onClose }) => {
     const content = formData.get("content");
 
     try {
-      dispatch(postsActions.addPost({ id: Date.now(), title, content, createdBy: email }));
-      onClose();
+      dispatch(
+        postsActions.addPost({
+          id: Date.now(),
+          title,
+          content,
+          createdBy: email,
+        })
+      );
+      navigate("/posts");
     } catch (err) {
       setError(err.message || "Something went wrong!");
     }
   };
 
+  const handleNavigate = () => {
+    navigate("/posts");
+  };
   return (
     <div className={styles.newPostContainer}>
       <h1>Create New Post</h1>
@@ -38,8 +48,10 @@ const NewPost = ({ onClose }) => {
         </div>
         {error && <p className={styles.error}>{error}</p>}
         <div className={styles.actions}>
-          <button type="submit">Create Post</button>
-          <button type="button" onClick={onClose}>
+          <button type="submit">
+            Create Post
+          </button>
+          <button type="button" onClick={handleNavigate}>
             Cancel
           </button>
         </div>
