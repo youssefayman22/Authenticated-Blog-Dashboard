@@ -1,16 +1,23 @@
 // filepath: src/components/UserForm/UserForm.jsx
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { Form, useNavigate, useSearchParams } from "react-router-dom";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { authActions } from "../../store/AuthSlice";
 import styles from "./UserForm.module.css";
 
 const UserForm = () => {
   const [searchParams] = useSearchParams();
+  const isAuthenticated = useSelector((state) => state.auth.isAuthenticated);
   const mode = searchParams.get("mode") || "signup";
   const navigate = useNavigate();
   const dispatch = useDispatch();
   const [error, setError] = useState(null);
+
+  useEffect(() => {
+    if (isAuthenticated) {
+      navigate("/dashboard");
+    }
+  }, [isAuthenticated, navigate]);
 
   const handleSubmit = async (event) => {
     event.preventDefault();
