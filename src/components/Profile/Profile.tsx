@@ -3,8 +3,10 @@ import styles from "./Profile.module.css";
 import profileIcon from "../../assets/profile.png";
 import { useNavigate } from "react-router-dom";
 import { authActions } from "../../store/AuthSlice";
+import { RootState } from "../../store/Store";
+import React from "react";
 
-const Profile = () => {
+const Profile: React.FC = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
@@ -13,7 +15,7 @@ const Profile = () => {
     navigate("/");
   };
 
-  const email = useSelector((state) => state.auth.email);
+  const email = useSelector((state: RootState) => state.auth.email);
 
   return (
     <div className={styles.profile}>

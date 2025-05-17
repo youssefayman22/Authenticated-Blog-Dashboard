@@ -1,17 +1,18 @@
 // filepath: src/components/UserForm/UserForm.jsx
-import { useEffect, useState } from "react";
+import React, { FormEvent, useEffect, useState } from "react";
 import { Form, useNavigate, useSearchParams } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { authActions } from "../../store/AuthSlice";
 import styles from "./UserForm.module.css";
+import { RootState } from "../../store/Store";
 
-const UserForm = () => {
+const UserForm: React.FC = () => {
   const [searchParams] = useSearchParams();
-  const isAuthenticated = useSelector((state) => state.auth.isAuthenticated);
+  const isAuthenticated = useSelector((state: RootState) => state.auth.isAuthenticated);
   const mode = searchParams.get("mode") || "signup";
   const navigate = useNavigate();
   const dispatch = useDispatch();
-  const [error, setError] = useState(null);
+  const [error, setError] = useState<string | null>(null);
 
   useEffect(() => {
     if (isAuthenticated) {
@@ -19,9 +20,9 @@ const UserForm = () => {
     }
   }, [isAuthenticated, navigate]);
 
-  const handleSubmit = async (event) => {
+  const handleSubmit = async (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault();
-    const formData = new FormData(event.target);
+    const formData = new FormData(event.currentTarget);
     const email = formData.get("email");
     const password = formData.get("password");
 
@@ -55,7 +56,7 @@ const UserForm = () => {
     }
   };
 
-  const toggleMode = () => {
+  const toggleMode = (event: React.MouseEvent<HTMLButtonElement>) => {
     event.preventDefault();
     if (mode === "login") {
       navigate("/signup");

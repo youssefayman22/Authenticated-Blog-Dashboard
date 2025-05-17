@@ -1,10 +1,11 @@
 import { useNavigate } from "react-router-dom";
 import styles from "./Modes.module.css";
 import { useSelector } from "react-redux";
-import { useEffect } from "react";
+import React, { useEffect } from "react";
+import { RootState } from "../../store/Store";
 
-const Modes = () => {
-  const isAuthenticated = useSelector((state) => state.auth.isAuthenticated);
+const Modes: React.FC = () => {
+  const isAuthenticated = useSelector((state: RootState) => state.auth.isAuthenticated);
   const navigate = useNavigate();
 
   useEffect(() => {

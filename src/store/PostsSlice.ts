@@ -1,6 +1,16 @@
-import { createSlice } from "@reduxjs/toolkit";
+import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 
-const initialPostsState = {
+interface postsState{
+  posts: postPayload[];
+}
+
+interface postPayload{
+  title: string;
+  content: string;
+  id: number;
+  createdBy: string;
+}
+const initialPostsState: postsState = {
   posts: (() => {
     try {
       const storedPosts = localStorage.getItem("posts");
@@ -16,7 +26,7 @@ const postsSlice = createSlice({
   name: "posts",
   initialState: initialPostsState,
   reducers: {
-    addPost(state, action) {
+    addPost(state, action: PayloadAction<postPayload>) {
       const newPost = {
         title: action.payload.title,
         content: action.payload.content,
@@ -26,7 +36,7 @@ const postsSlice = createSlice({
       state.posts.push(newPost);
       localStorage.setItem("posts", JSON.stringify(state.posts));
     },
-    deletePost(state, action) {
+    deletePost(state, action: PayloadAction<number>) {
       state.posts = state.posts.filter((post) => post.id !== action.payload);
       localStorage.setItem("posts", JSON.stringify(state.posts));
     },

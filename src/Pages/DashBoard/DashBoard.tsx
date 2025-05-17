@@ -3,10 +3,11 @@ import { useNavigate } from "react-router-dom";
 import Profile from "../../components/Profile/Profile";
 import Posts from "../Posts/Posts";
 import styles from "./DashBoard.module.css";
+import { RootState } from "../../store/Store";
 
-const DashBoard = () => {
+const DashBoard: React.FC = () => {
   const navigate = useNavigate();
-  const isAuthenticated = useSelector((state) => state.auth.isAuthenticated);
+  const isAuthenticated = useSelector((state: RootState) => state.auth.isAuthenticated);
 
   if (!isAuthenticated) {
     return (

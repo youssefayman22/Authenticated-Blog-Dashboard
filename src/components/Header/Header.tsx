@@ -1,7 +1,8 @@
+import React from "react";
 import headerImg from "../../assets/blog.png";
 import styles from "./Header.module.css";
 
-const Header = () => {
+const Header: React.FC = () => {
   return (
     <div className={styles.layout}>
       <div className={styles.mainContent}>

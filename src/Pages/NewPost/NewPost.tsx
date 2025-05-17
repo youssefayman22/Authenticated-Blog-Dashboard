@@ -1,20 +1,21 @@
+import React, { FormEvent, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { postsActions } from "../../store/PostsSlice";
 import { Form, useNavigate } from "react-router-dom";
-import { useState } from "react";
 import styles from "./newPosts.module.css";
+import { RootState } from "../../store/Store";
 
-const NewPost = () => {
+const NewPost: React.FC = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
-  const email = useSelector((state) => state.auth.email);
-  const [error, setError] = useState(null);
+  const email = useSelector((state: RootState) => state.auth.email);
+  const [error, setError] = useState<string | null>(null);
 
-  const handleSubmit = (event) => {
+  const handleSubmit = (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault();
-    const formData = new FormData(event.target);
-    const title = formData.get("title");
-    const content = formData.get("content");
+    const formData = new FormData(event.currentTarget);
+    const title = formData.get("title") as string;
+    const content = formData.get("content") as string;
 
     try {
       dispatch(
@@ -27,13 +28,18 @@ const NewPost = () => {
       );
       navigate("/posts");
     } catch (err) {
-      setError(err.message || "Something went wrong!");
+      if (err instanceof Error) {
+        setError(err.message);
+      } else {
+        setError("Something went wrong!");
+      }
     }
   };
 
   const handleNavigate = () => {
     navigate("/posts");
   };
+
   return (
     <div className={styles.newPostContainer}>
       <h1>Create New Post</h1>
@@ -48,9 +54,7 @@ const NewPost = () => {
         </div>
         {error && <p className={styles.error}>{error}</p>}
         <div className={styles.actions}>
-          <button type="submit">
-            Create Post
-          </button>
+          <button type="submit">Create Post</button>
           <button type="button" onClick={handleNavigate}>
             Cancel
           </button>

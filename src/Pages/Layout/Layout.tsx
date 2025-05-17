@@ -3,7 +3,7 @@ import Header from "../../components/Header/Header";
 import NavBar from "../../components/NavBar/NavBar";
 import styles from "./Layout.module.css";
 
-const Layout = () => {
+const Layout: React.FC = () => {
   return (
     <div className={styles.layout}>
       <NavBar />

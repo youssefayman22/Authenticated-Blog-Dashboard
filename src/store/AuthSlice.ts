@@ -1,16 +1,31 @@
-import { createSlice } from "@reduxjs/toolkit";
+import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 
-const initialAuthState = {
+interface authState{
+  isAuthenticated: Boolean;
+  email: string;
+  signedUpEmails: string[];
+}
+
+interface signupPayload {
+  email: string;
+}
+
+interface loginPayload {
+  email: string;
+  token: string;
+}
+const storedEmails = localStorage.getItem("signedUpEmails");
+const initialAuthState: authState = {
   isAuthenticated: !!localStorage.getItem("token"),
   email: localStorage.getItem("email") || "",
-  signedUpEmails: JSON.parse(localStorage.getItem("signedUpEmails")) || [],
+  signedUpEmails: storedEmails ? JSON.parse(storedEmails) : [],
 };
 
 const authSlice = createSlice({
   name: "auth",
   initialState: initialAuthState,
   reducers: {
-    signup(state, action) {
+    signup(state, action: PayloadAction<signupPayload>) {
       const { email } = action.payload;
       state.signedUpEmails.push(email);
       localStorage.setItem(
@@ -24,7 +39,7 @@ const authSlice = createSlice({
       localStorage.removeItem("token");
       localStorage.removeItem("email");
     },
-    login(state, action) {
+    login(state, action: PayloadAction<loginPayload>) {
       const { email, token } = action.payload;
       if (!state.isAuthenticated) {
         const existingEmail = state.signedUpEmails.find(

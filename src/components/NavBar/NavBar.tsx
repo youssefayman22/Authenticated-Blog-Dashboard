@@ -1,9 +1,11 @@
 import { Link } from "react-router-dom";
 import { useSelector } from "react-redux";
 import styles from "./NavBar.module.css";
+import React from "react";
+import { RootState } from "../../store/Store";
 
-const NavBar = () => {
-  const isAuthenticated = useSelector((state) => state.auth.isAuthenticated);
+const NavBar: React.FC = () => {
+  const isAuthenticated = useSelector((state: RootState) => state.auth.isAuthenticated);
 
   return (
     <nav className={styles.navBar}>
