@@ -4,6 +4,21 @@ import styles from "./NavBar.module.css";
 import React from "react";
 import { RootState } from "../../store/Store";
 
+
+/**
+ * Navigation bar component that conditionally renders links
+ * based on the user's authentication status.
+ *
+ * - If authenticated, shows links to Posts, Dashboard, and New Post.
+ * - If not authenticated, shows a link to Home.
+ *
+ * @component
+ * @example
+ * return (
+ *   <NavBar />
+ * )
+ */
+
 const NavBar: React.FC = () => {
   const isAuthenticated = useSelector((state: RootState) => state.auth.isAuthenticated);
 

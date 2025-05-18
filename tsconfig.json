@@ -1,3 +1,26 @@
+/**
+ * TypeScript compiler configuration for the project.
+ *
+ * This configuration enables strict type checking, modern JavaScript features,
+ * and support for React with JSX. It also includes settings for module resolution
+ * and compatibility with third-party libraries.
+ *
+ * @property {string} target - Specifies the JavaScript language version output (ES6).
+ * @property {string} jsx - Enables JSX transformation for React (react-jsx).
+ * @property {string} module - Sets the module system to ES6.
+ * @property {string} moduleResolution - Uses Node-style module resolution.
+ * @property {boolean} esModuleInterop - Enables compatibility with CommonJS-style modules.
+ * @property {boolean} forceConsistentCasingInFileNames - Ensures consistent file name casing across the project.
+ * @property {boolean} strict - Enables all strict type-checking options.
+ * @property {boolean} skipLibCheck - Skips type checking of declaration files for faster builds.
+ * @property {boolean} allowSyntheticDefaultImports - Allows default imports from modules without a default export.
+ * @property {string[]} typeRoots - Specifies directories for type definitions.
+ *
+ * @example
+ * // Compile the project with this configuration
+ * tsc
+ */
+
 {
   "compilerOptions": {
     "target": "ES6",

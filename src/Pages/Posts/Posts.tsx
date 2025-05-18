@@ -4,6 +4,23 @@ import { postsActions } from "../../store/PostsSlice";
 import { useNavigate } from "react-router-dom";
 import { RootState } from "../../store/Store";
 
+/**
+ * Posts is a component that displays a list of posts.
+ * 
+ * - If the user is authenticated, it shows only the posts created by the logged-in user
+ *   and provides options to create or delete posts.
+ * - If the user is not authenticated, it displays all posts in read-only mode.
+ * 
+ * The component uses Redux to access post and authentication state, and React Router
+ * for navigation to the post creation page.
+ *
+ * @component
+ * @returns {React.ReactElement} A list of posts with conditional actions based on authentication.
+ *
+ * @example
+ * <Posts />
+ */
+
 const Posts: React.FC = () => {
   const posts = useSelector((state: RootState) => state.posts.posts);
   const isAuthenticated = useSelector((state: RootState) => state.auth.isAuthenticated);

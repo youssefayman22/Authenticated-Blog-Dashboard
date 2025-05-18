@@ -6,6 +6,24 @@ import { authActions } from "../../store/AuthSlice";
 import styles from "./UserForm.module.css";
 import { RootState } from "../../store/Store";
 
+/**
+ * UserForm is a React component that handles user authentication through a form interface.
+ * It supports both login and signup modes, determined by the `mode` query parameter in the URL.
+ *
+ * The component:
+ * - Redirects authenticated users to the dashboard.
+ * - Submits form data.
+ * - Dispatches Redux actions to update authentication state.
+ * - Displays error messages on failed login attempts.
+ * - Allows toggling between login and signup modes.
+ *
+ * @component
+ * @returns {React.ReactElement} A form for user login or signup.
+ *
+ * @example
+ * <UserForm />
+ */
+
 const UserForm: React.FC = () => {
   const [searchParams] = useSearchParams();
   const isAuthenticated = useSelector(

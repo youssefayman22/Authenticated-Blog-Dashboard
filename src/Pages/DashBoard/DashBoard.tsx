@@ -5,6 +5,19 @@ import Posts from "../Posts/Posts";
 import styles from "./DashBoard.module.css";
 import { RootState } from "../../store/Store";
 
+
+/**
+ * DashBoard is a protected component that displays the user's profile and posts.
+ * It checks the authentication status from the Redux store and redirects unauthenticated users
+ * to the login page
+ *
+ * @component
+ * @returns {React.ReactElement} The dashboard layout with profile and posts if authenticated,
+ *
+ * @example
+ * <DashBoard />
+ */
+
 const DashBoard: React.FC = () => {
   const navigate = useNavigate();
   const isAuthenticated = useSelector((state: RootState) => state.auth.isAuthenticated);

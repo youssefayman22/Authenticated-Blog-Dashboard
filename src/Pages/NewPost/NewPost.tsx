@@ -5,6 +5,20 @@ import { Form, useNavigate } from "react-router-dom";
 import styles from "./newPosts.module.css";
 import { RootState } from "../../store/Store";
 
+/**
+ * NewPost is a form component that allows authenticated users to create and submit new posts.
+ * It captures the post title and content, dispatches a Redux action to add the post,
+ * and navigates the user to the posts page upon successful submission.
+ *
+ * If an error occurs during submission, an error message is displayed.
+ *
+ * @component
+ * @returns {React.ReactElement} A form interface for creating a new post.
+ *
+ * @example
+ * <NewPost />
+ */
+
 const NewPost: React.FC = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();

@@ -7,6 +7,27 @@ import ProtectedRoute from "./components/protectedroute/ProtectedRoute";
 import Modes from "./Pages/Modes/Modes";
 import Layout from "./Pages/Layout/Layout";
 
+/**
+ * Defines the application's routing structure using React Router's `createBrowserRouter`.
+ *
+ * The router includes:
+ * - A root layout (`<Layout />`) that wraps all routes.
+ * - Public routes:
+ *   - `/` → `<Modes />` (authentication mode selection)
+ *   - `/signup` → `<UserForm />` (signup/login form)
+ * - Protected routes (wrapped in `<ProtectedRoute />`):
+ *   - `/dashboard` → `<DashBoard />`
+ *   - `/posts` → `<Posts />`
+ *   - `/new-post` → `<NewPost />`
+ *
+ * @constant
+ * @type {ReturnType<typeof createBrowserRouter>}
+ *
+ * @example
+ * import router from './router';
+ * <RouterProvider router={router} />
+ */
+
 const router = createBrowserRouter([
   {
     path: "/",

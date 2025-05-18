@@ -6,10 +6,26 @@ import { authActions } from "../../store/AuthSlice";
 import { RootState } from "../../store/Store";
 import React from "react";
 
+/**
+ * Profile component that displays the current user's email and a logout button.
+ *
+ * - Shows a profile icon and the user's email address.
+ * - Allows the user to log out, which clears authentication state and navigates to the home page.
+ *
+ * @component
+ * @example
+ * return (
+ *   <Profile />
+ * )
+ */
 const Profile: React.FC = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
+  /**
+   * Handles user logout by dispatching the logout action
+   * and navigating to the home page.
+   */
   const handleLogout = () => {
     dispatch(authActions.logout());
     navigate("/");
