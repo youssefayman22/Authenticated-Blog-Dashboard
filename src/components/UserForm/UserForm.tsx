@@ -8,7 +8,9 @@ import { RootState } from "../../store/Store";
 
 const UserForm: React.FC = () => {
   const [searchParams] = useSearchParams();
-  const isAuthenticated = useSelector((state: RootState) => state.auth.isAuthenticated);
+  const isAuthenticated = useSelector(
+    (state: RootState) => state.auth.isAuthenticated
+  );
   const mode = searchParams.get("mode") || "signup";
   const navigate = useNavigate();
   const dispatch = useDispatch();
@@ -59,6 +61,7 @@ const UserForm: React.FC = () => {
   const toggleMode = (event: React.MouseEvent<HTMLButtonElement>) => {
     event.preventDefault();
     if (mode === "login") {
+      setError("");
       navigate("/signup");
     } else {
       navigate("/signup?mode=login");
@@ -68,7 +71,10 @@ const UserForm: React.FC = () => {
     <div className={styles.formOverlay}>
       <Form method="post" className={styles.form} onSubmit={handleSubmit}>
         <h2>{mode === "login" ? "Login" : "Sign Up"}</h2>
-        {error && <p className={styles.errorMessage}>{error}</p>}
+
+        {error && mode === "login" && (
+          <p className={styles.errorMessage}>{error}</p>
+        )}
         <div className={styles.formGroup}>
           <label htmlFor="email">Email</label>
           <input type="email" id="email" name="email" required />
